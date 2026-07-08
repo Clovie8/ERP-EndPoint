@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1. HQ API ROUTE: Catch anything starting with /hq-api/
+    RewriteRule ^hq-api/(.*)$ hq-api.php?action=$1 [QSA,L]
+
+    # 2. MAIN API ROUTE (Fallback)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ api.php?action=$1 [QSA,L]
+</IfModule>

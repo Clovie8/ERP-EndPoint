@@ -1,0 +1,15 @@
+# 1. Disable directory browsing (prevents people from seeing your file list)
+Options -Indexes
+
+# 2. Block direct web access to sensitive folders and files
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # If someone tries to access /app, /Vendor, or .env directly, throw a 403 Forbidden error
+    RewriteRule ^(app|Vendor|\.env) - [F,L,NC]
+</IfModule>
+
+# 3. Extra protection for hidden files (like .env or .git)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
