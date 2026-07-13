@@ -53,20 +53,21 @@ set_error_handler(function($severity, $message, $file, $line) {
 // =========================================================================
 // 2. CORS HEADERS (CRITICAL FOR REACT)
 // =========================================================================
-$allowed_origins = [
-    "http://localhost:5173",                     // local React app
-    "https://vendora-63q.pages.dev",
-    "https://dashboard.vendorapos.app"
-];
+// $allowed_origins = [
+//     "http://localhost:5173",                     // local React app
+//     "https://vendora-63q.pages.dev",
+//     "https://dashboard.vendorapos.app"
+// ];
 
-// 2. Check who is making the request
-$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+// // 2. Check who is making the request
+// $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 
-// 3. If they are in the safe list, grant them access
-if (in_array($origin, $allowed_origins)) {
-    header("Access-Control-Allow-Origin: " . $origin);
-}
+// // 3. If they are in the safe list, grant them access
+// if (in_array($origin, $allowed_origins)) {
+//     header("Access-Control-Allow-Origin: " . $origin);
+// }
 
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Credentials: true"); 
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
